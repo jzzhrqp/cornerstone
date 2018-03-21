@@ -1,6 +1,4 @@
-package com.cornerstone.http;
-import com.orhanobut.logger.Logger;
-import com.smart.chat.util.VnLog;
+package cornerstone.http;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import okhttp3.Headers;

@@ -1,8 +1,9 @@
-package com.cornerstone;
+package cornerstone;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
@@ -51,6 +52,26 @@ public class PermissionKit {
      * @param reason 申请理由
      * @param requestCode 申请码
      * @param listener 监听拒绝时 {@link ApplyPermissionListener}
+
+         需要在申请权限的activity中重写onRequestPermissionsResult 方法，以的得到申请结果。下面例子，可以参考
+     *
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    if (applyPermissionListener!=null
+    &&requestCode==applyPermissionListener.getRequstCode()){
+    if (grantResults.length > 0
+    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    // permission was granted, yay! Do the
+    // contacts-related task you need to do.
+    applyPermissionListener.onSuccessful();
+    } else {
+    // permission denied, boo! Disable the
+    // functionality that depends on this permission.
+    applyPermissionListener.onfailed();
+
+    }
+    applyPermissionListener=null;
+    }
+    }
      */
     public static void applyPermission(@NonNull final Activity activity, @NonNull final String[] prems, @NonNull String reason, final @IntRange(from = 0) int requestCode, @Nullable final ApplyPermissionListener listener) {
 
@@ -75,6 +96,7 @@ public class PermissionKit {
                 .setCancelable(false).show();
 
     }
+
 
 
 }

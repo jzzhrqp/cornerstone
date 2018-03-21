@@ -1,12 +1,10 @@
-package com.cornerstone.http;
+package cornerstone.http;
 
 import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.aoshuoCloud.AoshuoApi;
-import com.smart.chat.http.SmartChatApi;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -15,27 +13,20 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by iron on 17-12-27.
+ * rxjava+retrofit2+gson 组合的okhttp网络请求框架
  */
 
 public class Http {
 
-    private static AoshuoApi aoshuoApi=null;
-    private static SmartChatApi smartChatApi=null;
+    private static SimpleApi simpleApi=null;
     private static Application application=null;
 
 
-    public static AoshuoApi getAoshuoApi(){
-        if (aoshuoApi==null){
-            aoshuoApi= HttpBase.getRetrofit().create(AoshuoApi.class);
+    public static SimpleApi getSimpleApi(){
+        if (simpleApi==null){
+            simpleApi= HttpBase.getRetrofit().create(SimpleApi.class);
         }
-        return aoshuoApi;
-    }
-
-    public static SmartChatApi getSmartChatApi(){
-        if (smartChatApi==null){
-            smartChatApi= HttpBase.getRetrofit().create(SmartChatApi.class);
-        }
-        return smartChatApi;
+        return simpleApi;
     }
 
     public static <T>  void invoke(Observable<T> observable, Observer<T> callback) {

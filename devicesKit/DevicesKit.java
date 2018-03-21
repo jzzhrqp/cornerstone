@@ -1,4 +1,4 @@
-package com.cornerstone.devicesKit;
+package cornerstone.devicesKit;
 
 import android.content.Context;
 import android.content.res.Resources;

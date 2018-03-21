@@ -1,4 +1,4 @@
-package com.cornerstone.http;
+package cornerstone.http;
 
 import com.google.gson.Gson;
 
