@@ -1,4 +1,4 @@
-package cornerstone;
+package com.cornerstone;
 
 import android.app.Activity;
 import android.content.Context;

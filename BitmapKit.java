@@ -1,4 +1,4 @@
-package cornerstone;
+package com.cornerstone;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

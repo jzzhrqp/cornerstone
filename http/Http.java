@@ -1,4 +1,4 @@
-package cornerstone.http;
+package com.cornerstone.http;
 
 import android.app.Application;
 import android.content.Context;
@@ -24,7 +24,7 @@ public class Http {
 
     public static SimpleApi getSimpleApi(){
         if (simpleApi==null){
-            simpleApi= HttpBase.getRetrofit().create(SimpleApi.class);
+            simpleApi= com.cornerstone.http.HttpBase.getRetrofit(HttpBase.getOkHttpClient()).create(SimpleApi.class);
         }
         return simpleApi;
     }

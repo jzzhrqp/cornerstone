@@ -1,4 +1,4 @@
-package cornerstone.devicesKit;
+package com.cornerstone.devicesKit;
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;
