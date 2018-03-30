@@ -29,10 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpBase {
     private static Retrofit retrofit = null;
     private static OkHttpClient okHttpClient      = null;
-    private   Gson gson = new GsonBuilder()
-            //配置你的Gson
-            .setDateFormat("yyyy-MM-dd hh:mm:ss")
-            .create();
 
     public static Retrofit getRetrofit( OkHttpClient client) {
         if (retrofit ==null){
