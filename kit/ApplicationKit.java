@@ -1,0 +1,65 @@
+package com.cornerstone.kit;
+
+import android.content.Context;
+import android.text.TextUtils;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+ * Created by Administrator on 2018/4/2.
+ */
+
+public class ApplicationKit {
+
+    String processName;
+    String packageName;
+    private boolean mainProcess=false;
+    Context context;
+
+    public ApplicationKit(Context context) {
+        this.context = context;
+        // 获取当前包名
+        packageName = context.getPackageName();
+// 获取当前进程名
+        processName = getProcessName(android.os.Process.myPid());
+        mainProcess =   processName == null || processName.equals(packageName);
+
+    }
+
+
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    public static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public boolean isMainProcess() {
+        return mainProcess;
+    }
+
+}

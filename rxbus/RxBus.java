@@ -39,9 +39,11 @@ public class RxBus {
         mStickyEventMap = new ConcurrentHashMap<>();
     }
 
-    public static synchronized RxBus getInstance() {
+    public static  RxBus getInstance() {
         if (mRxBus == null) {
-            mRxBus = new RxBus();
+            synchronized ("") {
+                mRxBus = new RxBus();
+            }
         }
         return mRxBus;
     }
@@ -50,7 +52,7 @@ public class RxBus {
      * 发送事件
      */
     public void post(final Object o) {
-        if (!me.isDisposed()) {
+        if (me!=null&& !me.isDisposed()) {
             me.onNext(o);
 //            mSubscribe = Observable.create(new ObservableOnSubscribe<Object>(){
 //                @Override
