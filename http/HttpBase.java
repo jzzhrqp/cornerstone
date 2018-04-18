@@ -2,10 +2,8 @@ package com.cornerstone.http;
 
 import android.text.TextUtils;
 
-import com.smartcontrol.net.Constants;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.orhanobut.logger.Logger;
+import com.smartcontrol.net.Constants;
 
 import java.security.cert.CertificateException;
 import java.util.List;
@@ -86,6 +84,8 @@ public class HttpBase {
         }
         return okHttpClient;
     }
+
+
 
     /**
      * 拼接Headers头部数据
